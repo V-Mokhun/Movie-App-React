@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import UserStore from "../store/UserStore";
+import userStore from "../store/UserStore";
 
 export const StoreContext = createContext<{
-  userStore?: UserStore;
+  userStore?: typeof userStore;
 }>({});

@@ -1,4 +1,5 @@
 import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+import { Button } from "./components";
 
 // Add your color mode config
 const config: ThemeConfig = {
@@ -15,6 +16,9 @@ const theme = {
         height: "100%",
       },
     },
+  },
+  components: {
+    Button,
   },
   ...config,
 };

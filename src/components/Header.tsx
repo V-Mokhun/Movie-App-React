@@ -1,54 +1,61 @@
 import { SearchIcon } from "@chakra-ui/icons";
-import { Button, ButtonGroup, Container, Flex, IconButton, Input, InputGroup } from "@chakra-ui/react";
-import React, { useContext, useState } from "react";
+import { Button, ButtonGroup, Container, Flex, IconButton, Image, Input, InputGroup, Text } from "@chakra-ui/react";
+import { observer } from "mobx-react-lite";
+import React, { FormEvent, useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import AvatarImage from "../assets/img/avatar.png";
 import { StoreContext } from "../context/storeContext";
-import { LOG_IN_ROUTE, SIGN_UP_ROUTE } from "../routes/routes";
+import { LOG_IN_ROUTE, PROFILE_ROUTE, SIGN_UP_ROUTE } from "../routes/routes";
 
 interface HeaderProps {}
 
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC<HeaderProps> = observer(() => {
   const [searchValue, setSearchValue] = useState("");
   const { userStore } = useContext(StoreContext);
 
+  const handleFormSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    setSearchValue("");
+  };
+
   return (
-    <Container maxW="container.xl" pt={4}>
+    <Container maxW="container.xl" pb={4}>
       <Flex alignItems="center" justifyContent="space-between">
-        <InputGroup>
-          <Input
-            pl={5}
-            type="text"
-            placeholder="Search"
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-          />
-          <IconButton type="submit" aria-label="search" icon={<SearchIcon />} />
-        </InputGroup>
+        <form style={{ maxWidth: 400, width: "100%", marginRight: 20 }} onSubmit={handleFormSubmit}>
+          <InputGroup>
+            <Input
+              pl={5}
+              type="text"
+              placeholder="Search"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <IconButton type="submit" aria-label="search" icon={<SearchIcon />} />
+          </InputGroup>
+        </form>
         {userStore?.isAuth ? (
-          <p>user</p>
+          <Link to={PROFILE_ROUTE}>
+            <Flex alignItems="center">
+              <Image
+                mr={2}
+                borderRadius="full"
+                boxSize={50}
+                src={AvatarImage}
+                alt={userStore.user?.displayName || "user"}
+              />
+              <Text fontSize="md">{userStore.user?.displayName}</Text>
+            </Flex>
+          </Link>
         ) : (
           <ButtonGroup>
             <Link to={LOG_IN_ROUTE}>
-              <Button
-                color="white"
-                bg="pink.400"
-                _hover={{
-                  bg: "red.100",
-                  color: "pink.400",
-                }}
-              >
+              <Button size="md" variant="pink">
                 Log In
               </Button>
             </Link>
             <Link to={SIGN_UP_ROUTE}>
-              <Button
-                _hover={{
-                  bg: "pink.400",
-                  color: "white",
-                }}
-                bg="red.100"
-                color="pink.400"
-              >
+              <Button size="md" variant="red">
                 Sign up
               </Button>
             </Link>
@@ -57,5 +64,5 @@ const Header: React.FC<HeaderProps> = () => {
       </Flex>
     </Container>
   );
-};
+});
 export default Header;

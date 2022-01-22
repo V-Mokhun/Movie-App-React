@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import useAuthListener from "./hooks/useAuthListener";
@@ -5,7 +6,7 @@ import { ONLY_PUBLIC_ROUTES, PRIVATE_ROUTES, PUBLIC_ROUTES } from "./routes";
 
 interface AppRouterProps {}
 
-const AppRouter: React.FC<AppRouterProps> = () => {
+const AppRouter: React.FC<AppRouterProps> = observer(() => {
   const userStore = useAuthListener();
 
   return (
@@ -21,5 +22,5 @@ const AppRouter: React.FC<AppRouterProps> = () => {
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
-};
+});
 export default AppRouter;

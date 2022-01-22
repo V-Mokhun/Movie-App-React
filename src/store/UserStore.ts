@@ -2,12 +2,17 @@
 import Firebase from "firebase/compat/app";
 import { makeAutoObservable } from "mobx";
 
-export default class UserStore {
+class UserStore {
   private _isAuth = false;
   private _user: Firebase.User | null = null;
 
   constructor() {
     makeAutoObservable(this);
+    this._user = JSON.parse(localStorage.getItem("user") || "null");
+
+    if (this._user) {
+      this._isAuth = true;
+    }
   }
 
   get user() {
@@ -26,3 +31,5 @@ export default class UserStore {
     this._isAuth = bool;
   }
 }
+
+export default new UserStore();

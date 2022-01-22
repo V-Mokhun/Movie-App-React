@@ -1,13 +1,12 @@
+import { Flex } from "@chakra-ui/react";
 import React from "react";
 import AppRouter from "./AppRouter";
-import Header from "./components/Header";
 
 const App: React.FC = () => {
   return (
-    <div className="wrapper">
-      <Header />
+    <Flex py={4} flexDirection="column" height="100%">
       <AppRouter />
-    </div>
+    </Flex>
   );
 };
 

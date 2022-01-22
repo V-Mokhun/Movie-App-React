@@ -9,14 +9,14 @@ const useAuthListener = () => {
   useEffect(() => {
     if (firebase) {
       const listener = firebase.auth().onAuthStateChanged((authUser) => {
-        if (authUser && userStore) {
-          userStore.setIsAuth(true);
-          userStore.setUser(authUser);
+        if (authUser) {
           localStorage.setItem("user", JSON.stringify(authUser));
-        } else if (userStore) {
-          userStore.setIsAuth(false);
-          userStore.setUser(null);
+          userStore?.setIsAuth(true);
+          userStore?.setUser(authUser);
+        } else {
           localStorage.removeItem("user");
+          userStore?.setIsAuth(false);
+          userStore?.setUser(null);
         }
       });
 

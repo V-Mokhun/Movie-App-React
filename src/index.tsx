@@ -7,14 +7,14 @@ import App from "./App";
 import { FirebaseContext } from "./context/firebaseContext";
 import { StoreContext } from "./context/storeContext";
 import firebase from "./lib/firebase";
-import UserStore from "./store/UserStore";
+import userStore from "./store/UserStore";
 import theme from "./theme";
 
 const queryClient = new QueryClient();
 
 const ContextProvider: React.FC = ({ children }) => {
   const firebaseValue = useMemo(() => ({ firebase }), []);
-  const storeValue = useMemo(() => ({ userStore: new UserStore() }), []);
+  const storeValue = useMemo(() => ({ userStore }), []);
 
   return (
     <FirebaseContext.Provider value={firebaseValue}>
