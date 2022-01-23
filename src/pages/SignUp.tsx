@@ -15,7 +15,7 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import LayoutWithoutSidebar from "../components/LayoutWithoutSidebar";
 import { FirebaseContext } from "../context/firebaseContext";
 import { HOME_ROUTE, LOG_IN_ROUTE } from "../routes/routes";
-import { validateEmail } from "../utils";
+import { handleSignUp, validateEmail } from "../utils";
 
 interface SignUpProps {}
 
@@ -38,14 +38,7 @@ const SignUp: React.FC<SignUpProps> = () => {
     setIsLoading(true);
 
     if (firebase) {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then((result) => {
-          if (result && result.user) {
-            result.user.updateProfile({ displayName: name });
-          }
-        })
+      handleSignUp(firebase, name, email, password)
         .then(() => {
           navigate(HOME_ROUTE);
         })

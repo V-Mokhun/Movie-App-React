@@ -1,23 +1,31 @@
 import { SearchIcon } from "@chakra-ui/icons";
 import { Button, ButtonGroup, Container, Flex, IconButton, Image, Input, InputGroup, Text } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
-import React, { FormEvent, useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { FormEvent, useCallback, useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import AvatarImage from "../assets/img/avatar.png";
 import { StoreContext } from "../context/storeContext";
-import { LOG_IN_ROUTE, PROFILE_ROUTE, SIGN_UP_ROUTE } from "../routes/routes";
+import { LOG_IN_ROUTE, PROFILE_ROUTE, SEARCH_ROUTE, SIGN_UP_ROUTE } from "../routes/routes";
 
 interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = observer(() => {
+  const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const { userStore } = useContext(StoreContext);
 
-  const handleFormSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const handleFormSubmit = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault();
 
-    setSearchValue("");
-  };
+      localStorage.setItem("search-query", searchValue);
+      userStore?.setSearchQuery(searchValue);
+
+      setSearchValue("");
+      navigate(SEARCH_ROUTE);
+    },
+    [searchValue]
+  );
 
   return (
     <Container maxW="container.xl" pb={4}>
