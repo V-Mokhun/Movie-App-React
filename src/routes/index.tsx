@@ -1,6 +1,6 @@
 import Home from "../pages/Home";
 import LogIn from "../pages/LogIn";
-import Movies from "../pages/Movies";
+import Discover from "../pages/Discover";
 import OneMovie from "../pages/OneMovie";
 import Profile from "../pages/Profile";
 import Search from "../pages/Search";
@@ -8,7 +8,7 @@ import SignUp from "../pages/SignUp";
 import {
   HOME_ROUTE,
   LOG_IN_ROUTE,
-  MOVIES_ROUTE,
+  DISCOVER_ROUTE,
   ONE_MOVIE_ROUTE,
   PROFILE_ROUTE,
   SEARCH_ROUTE,
@@ -21,8 +21,8 @@ export const PUBLIC_ROUTES = [
     Component: <Home />,
   },
   {
-    path: MOVIES_ROUTE,
-    Component: <Movies />,
+    path: DISCOVER_ROUTE,
+    Component: <Discover />,
   },
   {
     path: ONE_MOVIE_ROUTE,

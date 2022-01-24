@@ -21,3 +21,7 @@ export const handleSignUp = (firebase: Firebase.app.App, name: string, email: st
 export const handleLogIn = (firebase: Firebase.app.App, email: string, password: string) => {
   return firebase.auth().signInWithEmailAndPassword(email, password);
 };
+
+export const handleLogOut = (firebase: Firebase.app.App) => {
+  return firebase.auth().signOut();
+};

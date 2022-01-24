@@ -20,7 +20,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Flex py={4} flexDirection="column" height="100%">
+    <Flex pt={4} flexDirection="column" height="100%">
       <AppRouter />
     </Flex>
   );

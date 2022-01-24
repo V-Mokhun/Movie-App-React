@@ -7,11 +7,11 @@ interface LayoutWithSidebarProps {}
 
 const LayoutWithSidebar: React.FC<LayoutWithSidebarProps> = ({ children }) => {
   return (
-    <Flex>
-      <Box sx={{ flex: "0 0 250px" }}>
+    <Flex height="100%">
+      <Box sx={{ flex: "0 0 270px", height: "100%" }}>
         <Sidebar />
       </Box>
-      <Box sx={{ flex: "1 1 auto" }}>
+      <Box sx={{ flex: "1 1 auto", height: "100%" }}>
         <Header />
         <Box sx={{ flex: "1 1 auto" }}>
           <Container maxW="container.xl">{children}</Container>
