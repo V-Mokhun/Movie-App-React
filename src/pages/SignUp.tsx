@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import React, { FormEvent, useContext, useMemo, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import LayoutWithoutSidebar from "../components/LayoutWithoutSidebar";
 import { FirebaseContext } from "../context/firebaseContext";
 import { HOME_ROUTE, LOG_IN_ROUTE } from "../routes/routes";
 import { handleSignUp, validateEmail } from "../utils";
@@ -54,72 +53,70 @@ const SignUp: React.FC<SignUpProps> = () => {
   };
 
   return (
-    <LayoutWithoutSidebar>
-      <Container
-        maxW="container.md"
+    <Container
+      maxW="container.md"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        height: "100%",
+      }}
+    >
+      <Flex
+        flexDirection="column"
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          height: "100%",
+          boxShadow: "0 0 5px rgba(0, 0, 0, 0.3)",
+          p: 5,
         }}
       >
-        <Flex
-          flexDirection="column"
-          sx={{
-            boxShadow: "0 0 5px rgba(0, 0, 0, 0.3)",
-            p: 5,
-          }}
-        >
-          <Heading as="h1" size="xl" mb={5} fontWeight={400} textAlign="center">
+        <Heading as="h1" size="xl" mb={5} fontWeight={400} textAlign="center">
+          Sign up
+        </Heading>
+        <form onSubmit={handleFormSubmit}>
+          {error && <FormErrorMessage>{error}</FormErrorMessage>}
+          <FormControl isInvalid={isNameError}>
+            <FormLabel mr={0}>
+              <Text fontSize="sm">Name</Text>
+              <Input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+              {isNameError && <FormErrorMessage>Provide valid name</FormErrorMessage>}
+            </FormLabel>
+          </FormControl>
+          <FormControl isInvalid={isEmailError}>
+            <FormLabel mr={0}>
+              <Text fontSize="sm">Email address</Text>
+              <Input
+                type="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              {isEmailError && <FormErrorMessage>Provide valid email</FormErrorMessage>}
+            </FormLabel>
+          </FormControl>
+          <FormControl isInvalid={isPasswordError} mb={4}>
+            <FormLabel mr={0}>
+              <Text fontSize="sm">Password</Text>
+              <Input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {isPasswordError && <FormErrorMessage>Provide valid password</FormErrorMessage>}
+            </FormLabel>
+          </FormControl>
+          <Button type="submit" mb={2} disabled={isError || isLoading} size="lg" variant="pink" width="100%">
             Sign up
-          </Heading>
-          <form onSubmit={handleFormSubmit}>
-            {error && <FormErrorMessage>{error}</FormErrorMessage>}
-            <FormControl isInvalid={isNameError}>
-              <FormLabel mr={0}>
-                <Text fontSize="sm">Name</Text>
-                <Input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-                {isNameError && <FormErrorMessage>Provide valid name</FormErrorMessage>}
-              </FormLabel>
-            </FormControl>
-            <FormControl isInvalid={isEmailError}>
-              <FormLabel mr={0}>
-                <Text fontSize="sm">Email address</Text>
-                <Input
-                  type="email"
-                  placeholder="Email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                {isEmailError && <FormErrorMessage>Provide valid email</FormErrorMessage>}
-              </FormLabel>
-            </FormControl>
-            <FormControl isInvalid={isPasswordError} mb={4}>
-              <FormLabel mr={0}>
-                <Text fontSize="sm">Password</Text>
-                <Input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {isPasswordError && <FormErrorMessage>Provide valid password</FormErrorMessage>}
-              </FormLabel>
-            </FormControl>
-            <Button type="submit" mb={2} disabled={isError || isLoading} size="lg" variant="pink" width="100%">
-              Sign up
-            </Button>
-            <Text textAlign="right" fontSize="lg">
-              Already have an account?{" "}
-              <Link color="teal.500" as={RouterLink} to={LOG_IN_ROUTE}>
-                Log in now!
-              </Link>
-            </Text>
-          </form>
-        </Flex>
-      </Container>
-    </LayoutWithoutSidebar>
+          </Button>
+          <Text textAlign="right" fontSize="lg">
+            Already have an account?{" "}
+            <Link color="teal.500" as={RouterLink} to={LOG_IN_ROUTE}>
+              Log in now!
+            </Link>
+          </Text>
+        </form>
+      </Flex>
+    </Container>
   );
 };
 export default SignUp;

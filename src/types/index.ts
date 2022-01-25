@@ -4,64 +4,90 @@ export enum MovieTypes {
   "UNKNOWN" = "Unknown",
 }
 
+export enum Months {
+  JANUARY = "JANUARY",
+  FEBRUARY = "FEBRUARY",
+  MARCH = "MARCH",
+  APRIL = "APRIL",
+  MAY = "MAY",
+  JUNE = "JUNE",
+  JULY = "JULY",
+  AUGUST = "AUGUST",
+  SEPTEMBER = "SEPTEMBER",
+  OCTOBER = "OCTOBER",
+  NOVEMBER = "NOVEMBER",
+  DECEMBER = "DECEMBER",
+}
+
+export type MovieGenres = {
+  genre: string;
+}[];
+
+export type MovieCountries = {
+  country: string;
+}[];
+
 export interface Movie {
-  filmId: number;
+  kinopoiskId?: number;
+  filmId?: number;
   nameRu: string;
   nameEn: string;
   type: MovieTypes;
   year: string | number;
   description: string;
   filmLength: string | number;
-  countries: {
-    country: string;
-  }[];
-  genres: {
-    genre: string;
-  }[];
+  countries: MovieCountries;
+  genres: MovieGenres;
   rating: string;
   ratingVoteCount: number;
   posterUrl: string;
   posterUrlPreview: string;
 }
 
-export interface MovieSearchResponse {
-  keyword: string;
-  pagesCount: number;
-  searchFilmsCountResult: number;
-  films: Movie[];
+export interface DetailedMovie extends Movie {
+  kinopoiskId: number;
+  imdbId: string | null;
+  reviewsCount: number | null;
+  ratingGoodReview: number | null;
+  ratingGoodReviewVoteCount: number | null;
+  ratingKinopoisk: number | null;
+  ratingKinopoiskVoteCount: number | null;
+  ratingImdb: number | null;
+  ratingImdbVoteCount: number | null;
+  ratingFilmCritics: number | null;
+  ratingFilmCriticsVoteCount: number | null;
+  ratingAwait: number | null;
+  ratingAwaitCount: number | null;
+  ratingRfCritics: number | null;
+  ratingRfCriticsVoteCount: number | null;
+  webUrl: string | null;
+  slogan: string | null;
+  description: string;
+  shortDescription: string | null;
+  editorAnnotation: string | null;
+  isTicketsAvailable: boolean;
+  productionStatus: string | null;
+  ratingMpaa: string | null;
+  ratingAgeLimits: string | null;
+  hasImax: boolean | null;
+  has3D: boolean | null;
+  lastSync: string;
+  startYear: number | null;
+  endYear: number | null;
+  serial?: boolean;
+  shortFilm?: boolean;
+  completed?: boolean;
 }
 
-export interface detailedMovie extends Movie {
+export interface PremiereMovie {
   kinopoiskId: number;
-  imdbId: string;
-  reviewsCount: number;
-  ratingGoodReview: number;
-  ratingGoodReviewVoteCount: number;
-  ratingKinopoisk: number;
-  ratingKinopoiskVoteCount: number;
-  ratingImdb: number;
-  ratingImdbVoteCount: number;
-  ratingFilmCritics: number;
-  ratingFilmCriticsVoteCount: number;
-  ratingAwait: number;
-  ratingAwaitCount: number;
-  ratingRfCritics: number;
-  ratingRfCriticsVoteCount: number;
-  webUrl: string;
-  slogan: string;
-  description: string;
-  shortDescription: string;
-  editorAnnotation: string;
-  isTicketsAvailable: boolean;
-  productionStatus: string;
-  ratingMpaa: string;
-  ratingAgeLimits: string;
-  hasImax: boolean;
-  has3D: boolean;
-  lastSync: string;
-  startYear: number;
-  endYear: number;
-  serial: boolean;
-  shortFilm: boolean;
-  completed: boolean;
+  nameRu: string;
+  nameEn: string;
+  year: number;
+  posterUrl: string;
+  posterUrlPreview: string;
+  countries: MovieCountries;
+  genres: MovieGenres;
+  duration: number;
+  premiereRu: string;
 }

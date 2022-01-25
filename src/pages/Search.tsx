@@ -2,7 +2,6 @@ import { observer } from "mobx-react-lite";
 import React, { useContext, useState } from "react";
 import { useQuery } from "react-query";
 import { fetchMovieBySearchQuery } from "../api/movies";
-import LayoutWithSidebar from "../components/LayoutWithSidebar";
 import { StoreContext } from "../context/storeContext";
 import { Movie } from "../types";
 
@@ -15,6 +14,6 @@ const Search: React.FC<SearchProps> = observer(() => {
     fetchMovieBySearchQuery(userStore?.searchQuery!)
   );
 
-  return <LayoutWithSidebar>Search</LayoutWithSidebar>;
+  return <div>Search</div>;
 });
 export default Search;

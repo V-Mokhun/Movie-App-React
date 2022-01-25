@@ -1,6 +1,8 @@
-import { Flex } from "@chakra-ui/react";
+import { Box, Container, Flex } from "@chakra-ui/react";
 import React, { useContext, useEffect } from "react";
 import AppRouter from "./AppRouter";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 import { StoreContext } from "./context/storeContext";
 
 const App: React.FC = () => {
@@ -21,7 +23,19 @@ const App: React.FC = () => {
 
   return (
     <Flex pt={4} flexDirection="column" height="100%">
-      <AppRouter />
+      <Flex height="100%">
+        <Box sx={{ flex: "0 0 270px", height: "100%" }}>
+          <Sidebar />
+        </Box>
+        <Box sx={{ flex: "1 1 auto", height: "100%", minWidth: 0 }}>
+          <Header />
+          <Box sx={{ flex: "1 1 auto" }}>
+            <Container maxW="container.xl">
+              <AppRouter />
+            </Container>
+          </Box>
+        </Box>
+      </Flex>
     </Flex>
   );
 };

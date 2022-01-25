@@ -61,7 +61,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
   }, [firebase]);
 
   return (
-    <Stack pl={4} pb={4} mr={4} height="100%" borderRight="1px solid #E2E8F0">
+    <Stack pl={4} pb={4} mr={4} height="100%" borderRightWidth={1} borderRightColor="gray.300" borderRightStyle="solid">
       <Heading as="h2" fontSize="3xl" textAlign="center" mb={6}>
         Movies
       </Heading>
@@ -99,19 +99,21 @@ const Sidebar: React.FC<SidebarProps> = () => {
           ))}
         </List>
       </Flex>
-      <Flex flexDirection="column">
-        <Heading textTransform="uppercase" as="h3" fontSize="md" color="gray.400" mb={3}>
-          General
-        </Heading>
-        <List spacing={3}>
-          <ListItem display="flex" alignItems="center">
-            <Img src={LogoutIcon} alt="Log out" maxW="30" maxH="30" />
-            <Button onClick={onLogOut} ml={3} fontWeight="500" color="gray.500" fontSize="md">
-              Log out
-            </Button>
-          </ListItem>
-        </List>
-      </Flex>
+      {userStore?.isAuth && (
+        <Flex flexDirection="column">
+          <Heading textTransform="uppercase" as="h3" fontSize="md" color="gray.400" mb={3}>
+            General
+          </Heading>
+          <List spacing={3}>
+            <ListItem display="flex" alignItems="center">
+              <Img src={LogoutIcon} alt="Log out" maxW="30" maxH="30" />
+              <Button onClick={onLogOut} ml={3} fontWeight="500" color="gray.500" fontSize="md">
+                Log out
+              </Button>
+            </ListItem>
+          </List>
+        </Flex>
+      )}
     </Stack>
   );
 };
