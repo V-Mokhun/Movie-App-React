@@ -1,26 +1,26 @@
 import React, { useRef } from "react";
 import { useQuery } from "react-query";
-import { fetchPremiereMovies } from "../api/movies";
+import { fetchReleaseMovies } from "../api/movies";
 import { Months } from "../types";
 import ErrorMessage from "./ErrorMessage";
 import LoadingSpinner from "./LoadingSpinner";
 import MoviesList from "./MoviesList";
 
-interface PremieresListProps {
+interface ReleasesListProps {
   year: number;
   month: Months;
 }
 
-const PremieresList: React.FC<PremieresListProps> = ({ year, month }) => {
+const ReleasesList: React.FC<ReleasesListProps> = ({ year, month }) => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
 
   const {
-    data: premiereMovies,
+    data: releaseMovies,
     isError,
     error,
     isLoading,
-  } = useQuery("popular-movies", () => fetchPremiereMovies(year, month));
+  } = useQuery("releases-movies", () => fetchReleaseMovies(year, month));
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -30,13 +30,13 @@ const PremieresList: React.FC<PremieresListProps> = ({ year, month }) => {
     return <ErrorMessage>An error occured! {error}</ErrorMessage>;
   }
 
-  return premiereMovies ? (
+  return releaseMovies ? (
     <MoviesList
-      movies={premiereMovies.items}
+      movies={releaseMovies.releases}
       prevRef={navigationPrevRef}
       nextRef={navigationNextRef}
-      title="Premieres"
+      title="Releases"
     />
   ) : null;
 };
-export default PremieresList;
+export default ReleasesList;

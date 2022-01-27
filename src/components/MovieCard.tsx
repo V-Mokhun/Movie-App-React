@@ -3,10 +3,10 @@ import { Box, Button, IconButton, Image } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 import { MOVIES_ROUTE } from "../routes/routes";
-import { PremiereMovie } from "../types";
+import { Movie } from "../types";
 
 interface MovieCardProps {
-  movie: PremiereMovie;
+  movie: Partial<Movie>;
   onToggleWatchList: () => void;
   isInWatchList: boolean;
 }

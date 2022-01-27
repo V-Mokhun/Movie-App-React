@@ -38,7 +38,7 @@ export interface Movie {
   filmLength: string | number;
   countries: MovieCountries;
   genres: MovieGenres;
-  rating: string;
+  rating: string | number;
   ratingVoteCount: number;
   posterUrl: string;
   posterUrlPreview: string;
@@ -90,4 +90,21 @@ export interface PremiereMovie {
   genres: MovieGenres;
   duration: number;
   premiereRu: string;
+}
+
+export interface ReleaseMovie {
+  filmId: number;
+  nameRu: string;
+  nameEn: string;
+  year: number;
+  posterUrl: string;
+  posterUrlPreview: string;
+  countries: MovieCountries;
+  genres: MovieGenres;
+  rating: number;
+  ratingVoteCount: number;
+  expectationsRating: number;
+  expectationsRatingVoteCount: number;
+  duration: number;
+  releaseDate: string;
 }

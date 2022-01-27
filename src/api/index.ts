@@ -3,6 +3,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 const API_URL = `https://kinopoiskapiunofficial.tech/api/`;
 export const MOVIE_BY_NAME_API_URL = `v2.1/films/search-by-keyword?keyword=`;
 export const PREMIERE_MOVIES_API_URL = `v2.2/films/premieres?`;
+export const RELEASE_MOVIES_API_URL = `v2.1/films/releases?`;
 
 const config: AxiosRequestConfig = {
   baseURL: API_URL,
