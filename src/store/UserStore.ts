@@ -45,10 +45,12 @@ class UserStore {
 
   setWatchList(watchlist: WatchlistMovie[]) {
     this._watchlist = watchlist;
+    localStorage.setItem("watch-list", JSON.stringify(this._watchlist));
   }
 
   addToWatchList(movie: WatchlistMovie) {
     this._watchlist.push(movie);
+    localStorage.setItem("watch-list", JSON.stringify(this._watchlist));
   }
 
   removeFromWatchList(id: number) {
@@ -59,6 +61,8 @@ class UserStore {
 
       return movie.kinopoiskId !== id;
     });
+
+    localStorage.setItem("watch-list", JSON.stringify(this._watchlist));
   }
 
   isMovieInWatchList(id: number) {

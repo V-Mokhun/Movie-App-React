@@ -18,13 +18,17 @@ const App: React.FC = () => {
         userStore.setUser(JSON.parse(localStorage.getItem("user") || "null"));
         userStore.setIsAuth(true);
       }
+
+      if (localStorage.getItem("watch-list")) {
+        userStore.setWatchList(JSON.parse(localStorage.getItem("watch-list") || "[]"));
+      }
     }
   }, []);
 
   return (
-    <Flex pt={4} flexDirection="column" height="100%">
-      <Flex height="100%">
-        <Box sx={{ flex: "0 0 270px", height: "100%" }}>
+    <Flex flexDirection="column" height="100%">
+      <Flex height="100%" overflow="auto">
+        <Box pt={4} sx={{ flex: "0 0 270px", height: "100%", position: "sticky", top: 0, zIndex: 10 }}>
           <Sidebar />
         </Box>
         <Box sx={{ flex: "1 1 auto", height: "100%", minWidth: 0 }}>

@@ -1,8 +1,5 @@
 /* eslint-disable import/no-unresolved */
-
 import "swiper/css";
-import "swiper/css/navigation";
-
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import { render } from "react-dom";

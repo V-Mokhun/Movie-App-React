@@ -2,12 +2,12 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import { Box, Flex, Heading, IconButton } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import React, { useCallback, useContext, useRef } from "react";
-import { Navigation } from "swiper";
 // eslint-disable-next-line import/no-unresolved
-import { Swiper, SwiperSlide } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
 import { StoreContext } from "../context/storeContext";
 import { PremiereMovie } from "../types";
 import MovieCard from "./MovieCard";
+import Slider from "./Slider";
 
 interface PremieresListProps {
   movies: PremiereMovie[];
@@ -42,27 +42,7 @@ const PremieresList: React.FC<PremieresListProps> = observer(({ movies }) => {
           <IconButton ref={navigationNextRef} aria-label="Next slide" icon={<ArrowRightIcon />} />
         </Flex>
       </Flex>
-      <Swiper
-        onInit={(swiper) => {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          // eslint-disable-next-line no-param-reassign
-          swiper.params.navigation.prevEl = navigationPrevRef.current;
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          // eslint-disable-next-line no-param-reassign
-          swiper.params.navigation.nextEl = navigationNextRef.current;
-          swiper.navigation.init();
-          swiper.navigation.update();
-        }}
-        modules={[Navigation]}
-        navigation={{
-          prevEl: navigationPrevRef.current ? navigationPrevRef.current : undefined,
-          nextEl: navigationNextRef.current ? navigationNextRef.current : undefined,
-        }}
-        spaceBetween={30}
-        slidesPerView={4}
-      >
+      <Slider prevRef={navigationPrevRef} nextRef={navigationNextRef}>
         {movies.map((movie) => (
           <SwiperSlide style={{ height: "auto", maxHeight: 350 }} key={movie.kinopoiskId}>
             <MovieCard
@@ -72,7 +52,7 @@ const PremieresList: React.FC<PremieresListProps> = observer(({ movies }) => {
             />
           </SwiperSlide>
         ))}
-      </Swiper>
+      </Slider>
     </Box>
   );
 });

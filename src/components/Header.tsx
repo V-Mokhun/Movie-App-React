@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = observer(() => {
   );
 
   return (
-    <Container maxW="container.xl" pb={4}>
+    <Container maxW="container.xl" py={4} position="sticky" top={0} zIndex={10} backgroundColor="white">
       <Flex alignItems="center" justifyContent="space-between">
         <form style={{ maxWidth: 400, width: "100%", marginRight: 20 }} onSubmit={handleFormSubmit}>
           <InputGroup>
