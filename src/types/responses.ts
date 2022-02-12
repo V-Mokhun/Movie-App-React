@@ -1,4 +1,4 @@
-import { Movie, PremiereMovie, ReleaseMovie } from ".";
+import { Movie, PremiereMovie, ReleaseMovie, TopMovie } from ".";
 
 export interface MovieSearchResponse {
   keyword: string;
@@ -16,4 +16,9 @@ export interface ReleaseMovieResponse {
   page: number;
   total: number;
   releases: ReleaseMovie[];
+}
+
+export interface TopMovieResponse {
+  pagesCount: number;
+  films: TopMovie[];
 }

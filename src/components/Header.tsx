@@ -18,6 +18,11 @@ const Header: React.FC<HeaderProps> = observer(() => {
     (e: FormEvent) => {
       e.preventDefault();
 
+      if (!searchValue.trim()) {
+        setSearchValue("");
+        return;
+      }
+
       localStorage.setItem("search-query", searchValue);
       userStore?.setSearchQuery(searchValue);
 

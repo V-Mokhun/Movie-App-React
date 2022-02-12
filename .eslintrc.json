@@ -59,6 +59,8 @@
     "arrow-body-style": 0,
     "import/extensions": 0,
     "react/react-in-jsx-scope": 0,
-    "consistent-return": 0
+    "consistent-return": 0,
+    "react/require-default-props": 0,
+    "no-plusplus": 0
   }
 }

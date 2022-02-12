@@ -33,7 +33,7 @@ const App: React.FC = () => {
         </Box>
         <Box sx={{ flex: "1 1 auto", height: "100%", minWidth: 0 }}>
           <Header />
-          <Box sx={{ flex: "1 1 auto" }}>
+          <Box pt={3} sx={{ flex: "1 1 auto" }}>
             <Container maxW="container.xl">
               <AppRouter />
             </Container>

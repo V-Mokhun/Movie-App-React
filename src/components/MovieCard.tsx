@@ -1,6 +1,6 @@
 import { AddIcon, DeleteIcon } from "@chakra-ui/icons";
-import { Box, Button, IconButton, Image } from "@chakra-ui/react";
-import React from "react";
+import { Box, IconButton, Image } from "@chakra-ui/react";
+import React, { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { MOVIES_ROUTE } from "../routes/routes";
 import { Movie } from "../types";
@@ -9,9 +9,10 @@ interface MovieCardProps {
   movie: Partial<Movie>;
   onToggleWatchList: () => void;
   isInWatchList: boolean;
+  style?: CSSProperties;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie, onToggleWatchList, isInWatchList }) => {
+const MovieCard: React.FC<MovieCardProps> = ({ movie, onToggleWatchList, isInWatchList, style }) => {
   return (
     <Box
       position="relative"
@@ -34,23 +35,11 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, onToggleWatchList, isInWat
           opacity: 0,
         },
       }}
+      sx={{ ...style }}
     >
-      <Link to={`${MOVIES_ROUTE}${movie.kinopoiskId}`}>
+      <Link to={`${MOVIES_ROUTE}${movie.kinopoiskId || movie.filmId}`}>
         <Image src={movie.posterUrlPreview} alt={movie.nameEn || movie.nameRu} height="100%" width="100%" />
       </Link>
-      <Button
-        variant="pink"
-        size="lg"
-        position="absolute"
-        bottom="20px"
-        left={15}
-        right={15}
-        zIndex={1}
-        as={Link}
-        to={`${MOVIES_ROUTE}${movie.kinopoiskId}`}
-      >
-        Watch Now
-      </Button>
       <IconButton
         zIndex={1}
         position="absolute"

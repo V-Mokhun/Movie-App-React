@@ -79,32 +79,23 @@ export interface DetailedMovie extends Movie {
   completed?: boolean;
 }
 
-export interface PremiereMovie {
+export type PremiereMovie = Omit<
+  Movie,
+  "filmId" | "type" | "description" | "filmLength" | "rating" | "ratingVoteCount"
+> & {
   kinopoiskId: number;
-  nameRu: string;
-  nameEn: string;
-  year: number;
-  posterUrl: string;
-  posterUrlPreview: string;
-  countries: MovieCountries;
-  genres: MovieGenres;
   duration: number;
   premiereRu: string;
-}
+};
 
-export interface ReleaseMovie {
+export type ReleaseMovie = Omit<Movie, "kinopoiskId" | "type" | "description" | "filmLength"> & {
   filmId: number;
-  nameRu: string;
-  nameEn: string;
-  year: number;
-  posterUrl: string;
-  posterUrlPreview: string;
-  countries: MovieCountries;
-  genres: MovieGenres;
-  rating: number;
-  ratingVoteCount: number;
   expectationsRating: number;
   expectationsRatingVoteCount: number;
   duration: number;
   releaseDate: string;
-}
+};
+
+export type TopMovie = Omit<Movie, "kinopoiskId" | "type" | "description"> & {
+  filmId: 263531;
+};

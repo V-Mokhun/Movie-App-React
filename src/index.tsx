@@ -38,3 +38,5 @@ render(
   </Router>,
   document.getElementById("root")
 );
+
+// search page
