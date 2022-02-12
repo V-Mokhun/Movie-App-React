@@ -9,9 +9,8 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ pagesCount, currentPage, setPage }) => {
   const pagesArray: number[] = [];
-  const count = Math.min(pagesCount, 20);
 
-  for (let index = 1; index <= count; index++) {
+  for (let index = 1; index <= pagesCount; index++) {
     pagesArray.push(index);
   }
 
@@ -34,7 +33,7 @@ const Pagination: React.FC<PaginationProps> = ({ pagesCount, currentPage, setPag
           );
         }
 
-        if (p === count) {
+        if (p === pagesCount) {
           return (
             <Button mx={1} key={p} disabled={p === currentPage} onClick={() => setPage(p)} variant="solid" size="xs">
               {p}

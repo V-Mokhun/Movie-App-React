@@ -20,8 +20,10 @@ export const fetchReleaseMovies = async (year: number, month: Months, page = 1) 
   return res.data;
 };
 
-export const fetchTopMovies = async (year: number, month: Months, page = 1) => {
-  const query = `${TOP_MOVIES_API_URL}year=${year}&month=${month}&page=${page}`;
+type TopMoviesTypes = "TOP_250_BEST_FILMS" | "TOP_100_POPULAR_FILMS" | "TOP_AWAIT_FILMS";
+
+export const fetchTopMovies = async (page = 1, type: TopMoviesTypes = "TOP_250_BEST_FILMS") => {
+  const query = `${TOP_MOVIES_API_URL}page=${page}&type=${type}`;
   const res = await $host.get<TopMovieResponse>(query);
   return res.data;
 };

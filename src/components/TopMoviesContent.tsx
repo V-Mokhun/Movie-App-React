@@ -1,11 +1,11 @@
 import React from "react";
 import { Movie } from "../types";
-import { MovieSearchResponse } from "../types/responses";
-import Pagination from "./Pagination";
+import { TopMovieResponse } from "../types/responses";
 import MoviesPageList from "./MoviesPageList";
+import Pagination from "./Pagination";
 
-interface SearchContentProps {
-  data: MovieSearchResponse;
+interface TopMoviesContentProps {
+  data: TopMovieResponse;
   restProps:
     | {
         page: number;
@@ -16,7 +16,7 @@ interface SearchContentProps {
     | undefined;
 }
 
-const SearchContent: React.FC<SearchContentProps> = ({ data, restProps }) => {
+const TopMoviesContent: React.FC<TopMoviesContentProps> = ({ data, restProps }) => {
   if (!restProps) return null;
 
   const { page, setPage, inWatchList, toggleWatchList } = restProps;
@@ -25,8 +25,8 @@ const SearchContent: React.FC<SearchContentProps> = ({ data, restProps }) => {
   return (
     <>
       <MoviesPageList movies={films} inWatchList={inWatchList} toggleWatchList={toggleWatchList} />
-      <Pagination pagesCount={Math.min(pagesCount, 20)} currentPage={page} setPage={setPage} />
+      <Pagination pagesCount={pagesCount} currentPage={page} setPage={setPage} />
     </>
   );
 };
-export default SearchContent;
+export default TopMoviesContent;

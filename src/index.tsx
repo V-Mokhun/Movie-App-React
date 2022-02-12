@@ -11,6 +11,7 @@ import { StoreContext } from "./context/storeContext";
 import firebase from "./lib/firebase";
 import userStore from "./store/UserStore";
 import theme from "./theme";
+import "./style.css";
 
 const queryClient = new QueryClient();
 

@@ -1,6 +1,6 @@
 import { Button, Flex, Heading, Img, List, ListItem, Stack } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DiscoverIcon from "../assets/img/discover.png";
 import HeartIcon from "../assets/img/heart.png";
@@ -80,6 +80,7 @@ const CATEGORIES_ITEMS = [
 const Sidebar: React.FC = observer(() => {
   const { userStore } = useContext(StoreContext);
   const { firebase } = useContext(FirebaseContext);
+  const [activeLink, setActiveLink] = useState(false);
   const navigate = useNavigate();
 
   const onLogOut = useCallback(() => {
