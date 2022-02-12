@@ -7,14 +7,21 @@ import HeartIcon from "../assets/img/heart.png";
 import HomeIcon from "../assets/img/home.svg";
 import LogoutIcon from "../assets/img/logout.png";
 import MovieIcon from "../assets/img/movie.png";
-import TvShowIcon from "../assets/img/tv-show.png";
 import { FirebaseContext } from "../context/firebaseContext";
 import { StoreContext } from "../context/storeContext";
-import { DISCOVER_ROUTE, HOME_ROUTE, PROFILE_ROUTE } from "../routes/routes";
+import {
+  AWAIT_MOVIES_ROUTE,
+  BEST_MOVIES_ROUTE,
+  DISCOVER_ROUTE,
+  HOME_ROUTE,
+  MOVIES_ROUTE,
+  POPULAR_MOVIES_ROUTE,
+  PREMIERE_MOVIES_ROUTE,
+  PROFILE_ROUTE,
+  RELEASE_MOVIES_ROUTE,
+} from "../routes/routes";
 import { handleLogOut } from "../utils";
 import SidebarLink from "./SidebarLink";
-
-interface SidebarProps {}
 
 const MENU_ITEMS = [
   {
@@ -40,17 +47,37 @@ const MENU_PRIVATE_ITEMS = [
 const CATEGORIES_ITEMS = [
   {
     icon: MovieIcon,
-    route: DISCOVER_ROUTE,
-    text: "Movies",
+    route: MOVIES_ROUTE,
+    text: "All",
   },
   {
-    icon: TvShowIcon,
-    route: DISCOVER_ROUTE,
-    text: "Tv Shows",
+    icon: MovieIcon,
+    route: BEST_MOVIES_ROUTE,
+    text: "Best",
+  },
+  {
+    icon: MovieIcon,
+    route: POPULAR_MOVIES_ROUTE,
+    text: "Popular",
+  },
+  {
+    icon: MovieIcon,
+    route: PREMIERE_MOVIES_ROUTE,
+    text: "Premiere",
+  },
+  {
+    icon: MovieIcon,
+    route: RELEASE_MOVIES_ROUTE,
+    text: "Release",
+  },
+  {
+    icon: MovieIcon,
+    route: AWAIT_MOVIES_ROUTE,
+    text: "Awaited",
   },
 ];
 
-const Sidebar: React.FC<SidebarProps> = observer(() => {
+const Sidebar: React.FC = observer(() => {
   const { userStore } = useContext(StoreContext);
   const { firebase } = useContext(FirebaseContext);
   const navigate = useNavigate();

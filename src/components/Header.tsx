@@ -7,9 +7,7 @@ import AvatarImage from "../assets/img/avatar.png";
 import { StoreContext } from "../context/storeContext";
 import { LOG_IN_ROUTE, PROFILE_ROUTE, SEARCH_ROUTE, SIGN_UP_ROUTE } from "../routes/routes";
 
-interface HeaderProps {}
-
-const Header: React.FC<HeaderProps> = observer(() => {
+const Header: React.FC = observer(() => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const { userStore } = useContext(StoreContext);

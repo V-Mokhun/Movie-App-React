@@ -1,6 +1,10 @@
 import Firebase from "firebase/compat/app";
 import UserStore from "../store/UserStore";
-import { Movie } from "../types";
+import { Movie, Months } from "../types";
+
+const date = new Date();
+export const year = date.getFullYear();
+export const month = date.toLocaleString("eng", { month: "long" }).toUpperCase() as Months;
 
 export const validateEmail = (email: string) => {
   return email.match(

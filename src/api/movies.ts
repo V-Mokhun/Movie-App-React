@@ -2,7 +2,7 @@ import { $host, MOVIE_BY_NAME_API_URL, PREMIERE_MOVIES_API_URL, RELEASE_MOVIES_A
 import { Months } from "../types/index";
 import { MovieSearchResponse, PremiereMovieResponse, ReleaseMovieResponse, TopMovieResponse } from "../types/responses";
 
-export const fetchMovieBySearchQuery = async (movie: string, page: number = 1) => {
+export const fetchMovieBySearchQuery = async (movie: string, page = 1) => {
   const query = `${MOVIE_BY_NAME_API_URL}${movie}&page=${page}`;
   const res = await $host.get<MovieSearchResponse>(query);
   return res.data;
@@ -14,14 +14,14 @@ export const fetchPremiereMovies = async (year: number, month: Months) => {
   return res.data;
 };
 
-export const fetchReleaseMovies = async (year: number, month: Months) => {
-  const query = `${RELEASE_MOVIES_API_URL}year=${year}&month=${month}`;
+export const fetchReleaseMovies = async (year: number, month: Months, page = 1) => {
+  const query = `${RELEASE_MOVIES_API_URL}year=${year}&month=${month}&page=${page}`;
   const res = await $host.get<ReleaseMovieResponse>(query);
   return res.data;
 };
 
-export const fetchTopMovies = async (year: number, month: Months) => {
-  const query = `${TOP_MOVIES_API_URL}year=${year}&month=${month}`;
+export const fetchTopMovies = async (year: number, month: Months, page = 1) => {
+  const query = `${TOP_MOVIES_API_URL}year=${year}&month=${month}&page=${page}`;
   const res = await $host.get<TopMovieResponse>(query);
   return res.data;
 };

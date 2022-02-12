@@ -1,32 +1,16 @@
 import React, { useRef } from "react";
-import { useQuery } from "react-query";
-import { fetchTopMovies } from "../api/movies";
-import { Months } from "../types";
-import ErrorMessage from "./ErrorMessage";
-import LoadingSpinner from "./LoadingSpinner";
+import { TopMovieResponse } from "../types/responses";
 import MoviesList from "./MoviesList";
 
 interface TopListProps {
-  year: number;
-  month: Months;
+  data: TopMovieResponse;
 }
 
-const TopList: React.FC<TopListProps> = ({ year, month }) => {
+const TopList: React.FC<TopListProps> = ({ data }) => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
+  const { films } = data;
 
-  const { data: topMovies, isError, error, isLoading } = useQuery("top-movies", () => fetchTopMovies(year, month));
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
-  if (isError) {
-    return <ErrorMessage>An error occured! {error}</ErrorMessage>;
-  }
-
-  return topMovies ? (
-    <MoviesList movies={topMovies.films} prevRef={navigationPrevRef} nextRef={navigationNextRef} title="Top" />
-  ) : null;
+  return <MoviesList movies={films} prevRef={navigationPrevRef} nextRef={navigationNextRef} title="Top" />;
 };
 export default TopList;

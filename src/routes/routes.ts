@@ -1,6 +1,11 @@
 export const HOME_ROUTE = `/`;
 export const DISCOVER_ROUTE = `/discover`;
-export const MOVIES_ROUTE = `/movies/`;
+export const POPULAR_MOVIES_ROUTE = `/popular-movies`;
+export const BEST_MOVIES_ROUTE = `/best-movies`;
+export const RELEASE_MOVIES_ROUTE = `/release-movies`;
+export const PREMIERE_MOVIES_ROUTE = `/premiere-movies`;
+export const AWAIT_MOVIES_ROUTE = `/await-movies`;
+export const MOVIES_ROUTE = `/movies`;
 export const ONE_MOVIE_ROUTE = `/movies/:id`;
 export const LOG_IN_ROUTE = `/login`;
 export const SIGN_UP_ROUTE = `/signup`;

@@ -1,22 +1,26 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
+import { fetchPremiereMovies, fetchReleaseMovies, fetchTopMovies } from "../api/movies";
 import PremieresList from "../components/PremieresList";
 import ReleasesList from "../components/ReleasesList";
 import TopList from "../components/TopList";
-import { Months } from "../types";
+import WithMovies from "../components/WithMovies";
+import { month, year } from "../utils";
 
-interface HomeProps {}
-
-const date = new Date();
-const year = date.getFullYear();
-const month = date.toLocaleString("eng", { month: "long" }).toUpperCase() as Months;
-
-const Home: React.FC<HomeProps> = () => {
+const Home: React.FC = () => {
   return (
     <Flex flexDirection="column">
-      <PremieresList year={year} month={month} />
-      <ReleasesList year={year} month={month} />
-      <TopList year={year} month={month} />
+      <WithMovies
+        Component={PremieresList}
+        queryParam="premiere-movies"
+        fetchFunction={() => fetchPremiereMovies(year, month)}
+      />
+      <WithMovies
+        Component={ReleasesList}
+        queryParam="releases-movies"
+        fetchFunction={() => fetchReleaseMovies(year, month)}
+      />
+      <WithMovies Component={TopList} queryParam="top-movies" fetchFunction={() => fetchTopMovies(year, month)} />
     </Flex>
   );
 };
