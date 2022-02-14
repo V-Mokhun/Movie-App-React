@@ -19,6 +19,18 @@ export enum Months {
   DECEMBER = "DECEMBER",
 }
 
+export enum MovieOptionOrder {
+  "RATING" = "RATING",
+  "NUM_VOTE" = "NUM_VOTE",
+  "YEAR" = "YEAR",
+}
+
+export enum MovieOptionType {
+  "FILM" = "FILM",
+  "TV SHOW" = "TV SHOW",
+  "ALL" = "ALL",
+}
+
 export type MovieGenres = {
   genre: string;
 }[];

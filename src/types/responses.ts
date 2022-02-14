@@ -1,5 +1,16 @@
 import { Movie, PremiereMovie, ReleaseMovie, TopMovie } from ".";
 
+export interface MovieResponse {
+  total: number;
+  totalPages: number;
+  items: Movie[];
+}
+
+export interface MovieFilterResponse {
+  genres: { id: number; genre: string }[];
+  countries: { id: number; country: string }[];
+}
+
 export interface MovieSearchResponse {
   keyword: string;
   pagesCount: number;
