@@ -7,7 +7,7 @@ import {
   MOVIES_API_URL,
   MOVIES_FILTERS_API_URL,
 } from ".";
-import { Months, MovieOptionType, MovieOptionOrder } from "../types/index";
+import { Months, MovieOptionType, MovieOptionOrder, MovieOptionRatingFrom } from "../types/index";
 import {
   MovieFilterResponse,
   MovieResponse,
@@ -17,12 +17,12 @@ import {
   TopMovieResponse,
 } from "../types/responses";
 
-interface MoviesOptions {
+export interface MoviesOptions {
   genre?: number;
   country?: number;
   order?: MovieOptionOrder;
   type?: MovieOptionType;
-  ratingFrom?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  ratingFrom?: MovieOptionRatingFrom;
 }
 
 export const fetchMovies = async (options: MoviesOptions, page = 1) => {
@@ -50,6 +50,7 @@ export const fetchMovies = async (options: MoviesOptions, page = 1) => {
   }
 
   const res = await $host.get<MovieResponse>(query);
+
   return res.data;
 };
 

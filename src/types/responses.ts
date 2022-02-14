@@ -6,9 +6,12 @@ export interface MovieResponse {
   items: Movie[];
 }
 
+export type MovieFilterGenres = { id: number; genre: string }[];
+export type MovieFilterCountries = { id: number; country: string }[];
+
 export interface MovieFilterResponse {
-  genres: { id: number; genre: string }[];
-  countries: { id: number; country: string }[];
+  genres: MovieFilterGenres;
+  countries: MovieFilterCountries;
 }
 
 export interface MovieSearchResponse {

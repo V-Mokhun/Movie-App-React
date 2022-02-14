@@ -6,7 +6,7 @@ import LoadingSpinner from "./LoadingSpinner";
 interface WithMoviesProps<T, P> {
   fetchFunction(): Promise<T>;
   queryParam: string;
-  queryDependencies?: any[];
+  queryDependencies?: unknown[];
   restProps?: P;
   Component: React.ComponentType<{ data: T; restProps: P | undefined }>;
 }

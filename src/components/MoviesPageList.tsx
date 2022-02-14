@@ -1,4 +1,5 @@
 import { Flex } from "@chakra-ui/react";
+import { observer } from "mobx-react-lite";
 import React from "react";
 import { Movie } from "../types";
 import ErrorMessage from "./ErrorMessage";
@@ -10,7 +11,7 @@ interface MoviesPageListProps {
   toggleWatchList: (movie: Partial<Movie>) => void;
 }
 
-const MoviesPageList: React.FC<MoviesPageListProps> = ({ movies, inWatchList, toggleWatchList }) => {
+const MoviesPageList: React.FC<MoviesPageListProps> = observer(({ movies, inWatchList, toggleWatchList }) => {
   return (
     <Flex pb={4} flexWrap="wrap" gap={3}>
       {movies.length > 0 ? (
@@ -31,5 +32,5 @@ const MoviesPageList: React.FC<MoviesPageListProps> = ({ movies, inWatchList, to
       )}
     </Flex>
   );
-};
+});
 export default MoviesPageList;

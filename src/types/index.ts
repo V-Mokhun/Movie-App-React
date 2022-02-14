@@ -27,9 +27,11 @@ export enum MovieOptionOrder {
 
 export enum MovieOptionType {
   "FILM" = "FILM",
-  "TV SHOW" = "TV SHOW",
+  "TV_SHOW" = "TV_SHOW",
   "ALL" = "ALL",
 }
+
+export type MovieOptionRatingFrom = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 export type MovieGenres = {
   genre: string;

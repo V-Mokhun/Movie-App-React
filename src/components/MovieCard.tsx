@@ -17,6 +17,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, onToggleWatchList, isInWat
     <Box
       position="relative"
       height="100%"
+      maxHeight={450}
       _after={{
         content: '""',
         position: "absolute",
