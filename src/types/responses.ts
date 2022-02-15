@@ -1,4 +1,13 @@
-import { Movie, PremiereMovie, ReleaseMovie, TopMovie } from ".";
+import {
+  MovieSequelsAndPrequelsType,
+  MovieFact,
+  Movie,
+  PremiereMovie,
+  ReleaseMovie,
+  TopMovie,
+  MovieBudget,
+  SimilarMovie,
+} from ".";
 
 export interface MovieResponse {
   total: number;
@@ -12,6 +21,31 @@ export type MovieFilterCountries = { id: number; country: string }[];
 export interface MovieFilterResponse {
   genres: MovieFilterGenres;
   countries: MovieFilterCountries;
+}
+
+export interface MovieFactResponse {
+  total: number;
+  items: MovieFact[];
+}
+
+export interface MovieBudgetResponse {
+  total: number;
+  items: MovieBudget[];
+}
+
+export interface MovieSimilarsResponse {
+  total: number;
+  items: SimilarMovie[];
+}
+
+export interface MovieSequelsAndPrequelsResponse {
+  filmId: number;
+  nameRu: string;
+  nameEn: string;
+  nameOriginal: string;
+  posterUrl: string;
+  posterUrlPreview: string;
+  relationType: MovieSequelsAndPrequelsType;
 }
 
 export interface MovieSearchResponse {

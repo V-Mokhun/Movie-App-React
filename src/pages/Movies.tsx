@@ -27,9 +27,7 @@ const Movies: React.FC = () => {
       ) : (
         data && (
           <MoviesContent
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             movies={data.items}
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             totalPages={data.totalPages}
             inWatchList={inWatchList}
             toggleWatchList={toggleWatchList}

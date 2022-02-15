@@ -6,15 +6,20 @@ import {
   TOP_MOVIES_API_URL,
   MOVIES_API_URL,
   MOVIES_FILTERS_API_URL,
+  ONE_MOVIE_API_URL,
 } from ".";
-import { Months, MovieOptionType, MovieOptionOrder, MovieOptionRatingFrom } from "../types/index";
+import { Months, MovieOptionType, MovieOptionOrder, MovieOptionRatingFrom, DetailedMovie } from "../types/index";
 import {
+  MovieBudgetResponse,
+  MovieFactResponse,
   MovieFilterResponse,
   MovieResponse,
   MovieSearchResponse,
   PremiereMovieResponse,
   ReleaseMovieResponse,
   TopMovieResponse,
+  MovieSequelsAndPrequelsResponse,
+  MovieSimilarsResponse,
 } from "../types/responses";
 
 export interface MoviesOptions {
@@ -57,6 +62,36 @@ export const fetchMovies = async (options: MoviesOptions, page = 1) => {
 export const fetchMoviesFilters = async () => {
   const query = `${MOVIES_FILTERS_API_URL}`;
   const res = await $host.get<MovieFilterResponse>(query);
+  return res.data;
+};
+
+export const fetchOneMovie = async (id: number) => {
+  const query = `${ONE_MOVIE_API_URL}${id}`;
+  const res = await $host.get<DetailedMovie>(query);
+  return res.data;
+};
+
+export const fetchOneMovieFacts = async (id: number) => {
+  const query = `${ONE_MOVIE_API_URL}${id}/facts`;
+  const res = await $host.get<MovieFactResponse>(query);
+  return res.data;
+};
+
+export const fetchOneMovieBudget = async (id: number) => {
+  const query = `${ONE_MOVIE_API_URL}${id}/box_office`;
+  const res = await $host.get<MovieBudgetResponse>(query);
+  return res.data;
+};
+
+export const fetchOneMovieSimilars = async (id: number) => {
+  const query = `${ONE_MOVIE_API_URL}${id}/similars`;
+  const res = await $host.get<MovieSimilarsResponse>(query);
+  return res.data;
+};
+
+export const fetchOneMovieSequelsAndPrequels = async (id: number) => {
+  const query = `${ONE_MOVIE_API_URL.replace("v2.2", "v2.1")}${id}/sequels_and_prequels`;
+  const res = await $host.get<MovieSequelsAndPrequelsResponse>(query);
   return res.data;
 };
 

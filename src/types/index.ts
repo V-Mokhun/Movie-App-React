@@ -19,6 +19,23 @@ export enum Months {
   DECEMBER = "DECEMBER",
 }
 
+enum MovieProductionStatus {
+  FILMING = "FILMING",
+  PRE_PRODUCTION = "PRE_PRODUCTION",
+  COMPLETED = "COMPLETED",
+  ANNOUNCED = "ANNOUNCED",
+  UNKNOWN = "UNKNOWN",
+  POST_PRODUCTION = "POST_PRODUCTION",
+}
+
+enum DetailedMovieType {
+  FILM = "FILM",
+  VIDEO = "VIDEO",
+  TV_SERIES = "TV_SERIES",
+  MINI_SERIES = "MINI_SERIES",
+  TV_SHOW = "TV_SHOW",
+}
+
 export enum MovieOptionOrder {
   "RATING" = "RATING",
   "NUM_VOTE" = "NUM_VOTE",
@@ -31,6 +48,18 @@ export enum MovieOptionType {
   "ALL" = "ALL",
 }
 
+enum MovieFactTypes {
+  "FACT" = "FACT",
+  "BLOOPER" = "BLOOPER",
+}
+
+export enum MovieSequelsAndPrequelsType {
+  SEQUEL = "SEQUEL",
+  PREQUEL = "PREQUEL",
+  REMAKE = "REMAKE",
+  UNKNOWN = "UNKNOWN",
+}
+
 export type MovieOptionRatingFrom = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 export type MovieGenres = {
@@ -40,6 +69,30 @@ export type MovieGenres = {
 export type MovieCountries = {
   country: string;
 }[];
+
+export interface MovieFact {
+  text: string;
+  type: MovieFactTypes;
+  spoiler: boolean;
+}
+
+export interface MovieBudget {
+  type: string;
+  amount: number;
+  currencyCode: string;
+  name: string;
+  symbol: string;
+}
+
+export interface SimilarMovie {
+  filmId: number;
+  nameRu: string;
+  nameEn: string;
+  nameOriginal: string;
+  posterUrl: string;
+  posterUrlPreview: string;
+  relationType: "SIMILAR";
+}
 
 export interface Movie {
   kinopoiskId?: number;
@@ -53,12 +106,13 @@ export interface Movie {
   countries: MovieCountries;
   genres: MovieGenres;
   rating: string | number;
+  ratingKinopoisk: number | null;
   ratingVoteCount: number;
   posterUrl: string;
   posterUrlPreview: string;
 }
 
-export interface DetailedMovie extends Movie {
+export type DetailedMovie = Movie & {
   kinopoiskId: number;
   imdbId: string | null;
   reviewsCount: number | null;
@@ -80,7 +134,8 @@ export interface DetailedMovie extends Movie {
   shortDescription: string | null;
   editorAnnotation: string | null;
   isTicketsAvailable: boolean;
-  productionStatus: string | null;
+  productionStatus: MovieProductionStatus | null;
+  type: DetailedMovieType | null;
   ratingMpaa: string | null;
   ratingAgeLimits: string | null;
   hasImax: boolean | null;
@@ -91,7 +146,7 @@ export interface DetailedMovie extends Movie {
   serial?: boolean;
   shortFilm?: boolean;
   completed?: boolean;
-}
+};
 
 export type PremiereMovie = Omit<
   Movie,
