@@ -11,6 +11,14 @@ const TopList: React.FC<TopListProps> = ({ data }) => {
   const navigationNextRef = useRef(null);
   const { films } = data;
 
-  return <MoviesList movies={films} prevRef={navigationPrevRef} nextRef={navigationNextRef} title="Top" />;
+  return (
+    <MoviesList
+      cardImageStyles={{ height: "100%" }}
+      movies={films}
+      prevRef={navigationPrevRef}
+      nextRef={navigationNextRef}
+      title="Top"
+    />
+  );
 };
 export default TopList;

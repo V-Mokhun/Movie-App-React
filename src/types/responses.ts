@@ -1,13 +1,4 @@
-import {
-  MovieSequelsAndPrequelsType,
-  MovieFact,
-  Movie,
-  PremiereMovie,
-  ReleaseMovie,
-  TopMovie,
-  MovieBudget,
-  SimilarMovie,
-} from ".";
+import { SequelAndPrequelMovie, Movie, PremiereMovie, ReleaseMovie, TopMovie, MovieBudget, SimilarMovie } from ".";
 
 export interface MovieResponse {
   total: number;
@@ -23,29 +14,16 @@ export interface MovieFilterResponse {
   countries: MovieFilterCountries;
 }
 
-export interface MovieFactResponse {
-  total: number;
-  items: MovieFact[];
-}
-
 export interface MovieBudgetResponse {
   total: number;
   items: MovieBudget[];
 }
 
+export type MovieSequelsAndPrequelsResponse = SequelAndPrequelMovie[];
+
 export interface MovieSimilarsResponse {
   total: number;
   items: SimilarMovie[];
-}
-
-export interface MovieSequelsAndPrequelsResponse {
-  filmId: number;
-  nameRu: string;
-  nameEn: string;
-  nameOriginal: string;
-  posterUrl: string;
-  posterUrlPreview: string;
-  relationType: MovieSequelsAndPrequelsType;
 }
 
 export interface MovieSearchResponse {

@@ -48,11 +48,6 @@ export enum MovieOptionType {
   "ALL" = "ALL",
 }
 
-enum MovieFactTypes {
-  "FACT" = "FACT",
-  "BLOOPER" = "BLOOPER",
-}
-
 export enum MovieSequelsAndPrequelsType {
   SEQUEL = "SEQUEL",
   PREQUEL = "PREQUEL",
@@ -70,18 +65,22 @@ export type MovieCountries = {
   country: string;
 }[];
 
-export interface MovieFact {
-  text: string;
-  type: MovieFactTypes;
-  spoiler: boolean;
-}
-
 export interface MovieBudget {
   type: string;
   amount: number;
   currencyCode: string;
   name: string;
   symbol: string;
+}
+
+export interface SequelAndPrequelMovie {
+  filmId: number;
+  nameRu: string;
+  nameEn: string;
+  nameOriginal: string;
+  posterUrl: string;
+  posterUrlPreview: string;
+  relationType: MovieSequelsAndPrequelsType;
 }
 
 export interface SimilarMovie {
@@ -112,7 +111,7 @@ export interface Movie {
   posterUrlPreview: string;
 }
 
-export type DetailedMovie = Movie & {
+export type DetailedMovie = Omit<Movie, "kinopoiskId" | "type" | "rating" | "ratingVoteCount"> & {
   kinopoiskId: number;
   imdbId: string | null;
   reviewsCount: number | null;
@@ -120,8 +119,6 @@ export type DetailedMovie = Movie & {
   ratingGoodReviewVoteCount: number | null;
   ratingKinopoisk: number | null;
   ratingKinopoiskVoteCount: number | null;
-  ratingImdb: number | null;
-  ratingImdbVoteCount: number | null;
   ratingFilmCritics: number | null;
   ratingFilmCriticsVoteCount: number | null;
   ratingAwait: number | null;
@@ -130,7 +127,6 @@ export type DetailedMovie = Movie & {
   ratingRfCriticsVoteCount: number | null;
   webUrl: string | null;
   slogan: string | null;
-  description: string;
   shortDescription: string | null;
   editorAnnotation: string | null;
   isTicketsAvailable: boolean;

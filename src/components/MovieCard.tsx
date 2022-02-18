@@ -11,9 +11,18 @@ interface MovieCardProps {
   onToggleWatchList: () => void;
   isInWatchList: boolean;
   style?: CSSProperties;
+  imageBoxStyle?: CSSProperties;
+  noText?: boolean;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie, onToggleWatchList, isInWatchList, style }) => {
+const MovieCard: React.FC<MovieCardProps> = ({
+  movie,
+  onToggleWatchList,
+  isInWatchList,
+  noText = false,
+  style,
+  imageBoxStyle,
+}) => {
   let color: string | null = null;
   let rating: string | number | null = null;
 
@@ -57,6 +66,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, onToggleWatchList, isInWat
             opacity: 0,
           },
         }}
+        sx={{ ...imageBoxStyle }}
       >
         <Link to={`${MOVIES_ROUTE}/${movie.kinopoiskId || movie.filmId}`}>
           <Image
@@ -92,9 +102,11 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, onToggleWatchList, isInWat
           </Text>
         )}
       </Box>
-      <Text maxH={50} overflowY="hidden" mt="auto" fontSize="md">
-        {movie.nameEn || movie.nameRu}
-      </Text>
+      {!noText && (
+        <Text maxH={50} overflowY="hidden" mt="auto" fontSize="md">
+          {movie.nameEn || movie.nameRu}
+        </Text>
+      )}
     </Box>
   );
 };

@@ -11,7 +11,6 @@ import {
 import { Months, MovieOptionType, MovieOptionOrder, MovieOptionRatingFrom, DetailedMovie } from "../types/index";
 import {
   MovieBudgetResponse,
-  MovieFactResponse,
   MovieFilterResponse,
   MovieResponse,
   MovieSearchResponse,
@@ -65,15 +64,9 @@ export const fetchMoviesFilters = async () => {
   return res.data;
 };
 
-export const fetchOneMovie = async (id: number) => {
+export const fetchOneMovie = async (id: number | string) => {
   const query = `${ONE_MOVIE_API_URL}${id}`;
   const res = await $host.get<DetailedMovie>(query);
-  return res.data;
-};
-
-export const fetchOneMovieFacts = async (id: number) => {
-  const query = `${ONE_MOVIE_API_URL}${id}/facts`;
-  const res = await $host.get<MovieFactResponse>(query);
   return res.data;
 };
 

@@ -11,6 +11,14 @@ const ReleaseList: React.FC<ReleaseListProps> = ({ data }) => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
 
-  return <MoviesList movies={releases} prevRef={navigationPrevRef} nextRef={navigationNextRef} title="Releases" />;
+  return (
+    <MoviesList
+      cardImageStyles={{ height: "100%" }}
+      movies={releases}
+      prevRef={navigationPrevRef}
+      nextRef={navigationNextRef}
+      title="Releases"
+    />
+  );
 };
 export default ReleaseList;

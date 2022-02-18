@@ -1,14 +1,14 @@
 /* eslint-disable lines-between-class-members */
 import Firebase from "firebase/compat/app";
 import { makeAutoObservable } from "mobx";
-import { Movie } from "../types";
+import { Movie, DetailedMovie } from "../types";
 
-type WatchlistMovie = Partial<Movie>;
+type WatchlistMovie = Partial<Movie> | DetailedMovie;
 
 class UserStore {
   private _isAuth = false;
   private _user: Firebase.User | null = null;
-  private _searchQuery: string = "";
+  private _searchQuery = "";
   private _watchlist: WatchlistMovie[] = [];
 
   constructor() {
