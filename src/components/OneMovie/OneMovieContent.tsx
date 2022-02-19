@@ -2,6 +2,7 @@
 import { AddIcon, DeleteIcon } from "@chakra-ui/icons";
 import { Box, Flex, Heading, IconButton, Text } from "@chakra-ui/react";
 import React from "react";
+import UserStore from "../../store/UserStore";
 import { DetailedMovie } from "../../types";
 import { numberWithSpaces } from "../../utils";
 import OneMovieAbout from "./OneMovieAbout";
@@ -11,9 +12,10 @@ interface OneMovieContentProps {
   data: DetailedMovie;
   isInWatchList: boolean;
   onToggleWatchList: () => void;
+  userStore: typeof UserStore | undefined;
 }
 
-const OneMovieContent: React.FC<OneMovieContentProps> = ({ data, isInWatchList, onToggleWatchList }) => {
+const OneMovieContent: React.FC<OneMovieContentProps> = ({ data, isInWatchList, onToggleWatchList, userStore }) => {
   return (
     <Box flex="1 1 auto" minW={0}>
       <Heading mb={2} as="h1" fontSize="5xl" fontWeight={700} color="gray.500">
@@ -36,13 +38,15 @@ const OneMovieContent: React.FC<OneMovieContentProps> = ({ data, isInWatchList, 
           )}
           {data.ratingKinopoiskVoteCount && <Text>{numberWithSpaces(data.ratingKinopoiskVoteCount)}</Text>}
         </Flex>
-        <Box>
-          <IconButton
-            aria-label={isInWatchList ? "Remove from watch list" : "Add to watch list"}
-            icon={isInWatchList ? <DeleteIcon /> : <AddIcon />}
-            onClick={onToggleWatchList}
-          />
-        </Box>
+        {userStore && userStore.user && (
+          <Box>
+            <IconButton
+              aria-label={isInWatchList ? "Remove from watch list" : "Add to watch list"}
+              icon={isInWatchList ? <DeleteIcon /> : <AddIcon />}
+              onClick={onToggleWatchList}
+            />
+          </Box>
+        )}
       </Flex>
       <OneMovieAbout data={data} />
       <OneMovieSequels id={data.kinopoiskId} />

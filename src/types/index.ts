@@ -109,6 +109,7 @@ export interface Movie {
   ratingVoteCount: number;
   posterUrl: string;
   posterUrlPreview: string;
+  duration?: number;
 }
 
 export type DetailedMovie = Omit<Movie, "kinopoiskId" | "type" | "rating" | "ratingVoteCount"> & {

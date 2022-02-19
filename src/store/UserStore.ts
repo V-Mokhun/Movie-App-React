@@ -3,7 +3,7 @@ import Firebase from "firebase/compat/app";
 import { makeAutoObservable } from "mobx";
 import { Movie, DetailedMovie } from "../types";
 
-type WatchlistMovie = Partial<Movie> | DetailedMovie;
+export type WatchlistMovie = Partial<Movie> | DetailedMovie;
 
 class UserStore {
   private _isAuth = false;

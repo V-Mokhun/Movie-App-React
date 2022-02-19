@@ -11,12 +11,17 @@ interface OneMovieTopProps {
 }
 
 const OneMovieTop: React.FC<OneMovieTopProps> = observer(({ data }) => {
-  const { inWatchList, toggleWatchList } = useMoviePage();
+  const { inWatchList, toggleWatchList, userStore } = useMoviePage();
 
   return (
     <Flex gap={6} pb={4} mb={4} borderBottom="1px solid #dedede66">
       <OneMovieImage src={data.posterUrlPreview} title={data.nameEn || data.nameRu} />
-      <OneMovieContent isInWatchList={inWatchList(data)} onToggleWatchList={() => toggleWatchList(data)} data={data} />
+      <OneMovieContent
+        userStore={userStore}
+        isInWatchList={inWatchList(data)}
+        onToggleWatchList={() => toggleWatchList(data)}
+        data={data}
+      />
     </Flex>
   );
 });
