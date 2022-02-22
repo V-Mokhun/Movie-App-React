@@ -1,17 +1,17 @@
 /* eslint-disable import/no-unresolved */
-import "swiper/css";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import { render } from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router } from "react-router-dom";
+import "swiper/css";
 import App from "./App";
 import { FirebaseContext } from "./context/firebaseContext";
 import { StoreContext } from "./context/storeContext";
 import firebase from "./lib/firebase";
 import userStore from "./store/UserStore";
-import theme from "./theme";
 import "./style.css";
+import theme from "./theme";
 
 const queryClient = new QueryClient();
 

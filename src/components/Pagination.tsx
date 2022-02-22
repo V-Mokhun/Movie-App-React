@@ -1,4 +1,4 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex, useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 
 interface PaginationProps {
@@ -8,6 +8,7 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({ pagesCount, currentPage, setPage }) => {
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const pagesArray: number[] = [];
 
   for (let index = 1; index <= pagesCount; index++) {
@@ -19,7 +20,14 @@ const Pagination: React.FC<PaginationProps> = ({ pagesCount, currentPage, setPag
       {pagesArray.map((p) => {
         if (pagesArray.length < 6) {
           return (
-            <Button mx={1} key={p} disabled={p === currentPage} onClick={() => setPage(p)} variant="solid" size="xs">
+            <Button
+              mx={1}
+              key={p}
+              disabled={p === currentPage}
+              onClick={() => setPage(p)}
+              variant="solid"
+              size={isLargerThan768 ? "xs" : "sm"}
+            >
               {p}
             </Button>
           );
@@ -27,7 +35,14 @@ const Pagination: React.FC<PaginationProps> = ({ pagesCount, currentPage, setPag
 
         if (p === 1) {
           return (
-            <Button mx={1} key={p} disabled={p === currentPage} onClick={() => setPage(p)} variant="solid" size="xs">
+            <Button
+              mx={1}
+              key={p}
+              disabled={p === currentPage}
+              onClick={() => setPage(p)}
+              variant="solid"
+              size={isLargerThan768 ? "xs" : "sm"}
+            >
               {p}
             </Button>
           );
@@ -35,7 +50,14 @@ const Pagination: React.FC<PaginationProps> = ({ pagesCount, currentPage, setPag
 
         if (p === pagesCount) {
           return (
-            <Button mx={1} key={p} disabled={p === currentPage} onClick={() => setPage(p)} variant="solid" size="xs">
+            <Button
+              mx={1}
+              key={p}
+              disabled={p === currentPage}
+              onClick={() => setPage(p)}
+              variant="solid"
+              size={isLargerThan768 ? "xs" : "sm"}
+            >
               {p}
             </Button>
           );
@@ -43,7 +65,14 @@ const Pagination: React.FC<PaginationProps> = ({ pagesCount, currentPage, setPag
 
         if (p >= currentPage - 2 && p <= currentPage + 2) {
           return (
-            <Button mx={1} key={p} disabled={p === currentPage} onClick={() => setPage(p)} variant="solid" size="xs">
+            <Button
+              mx={1}
+              key={p}
+              disabled={p === currentPage}
+              onClick={() => setPage(p)}
+              variant="solid"
+              size={isLargerThan768 ? "xs" : "sm"}
+            >
               {p}
             </Button>
           );

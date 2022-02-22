@@ -30,7 +30,15 @@ const Slider: React.FC<SliderProps> = ({ children, prevRef, nextRef, ...props })
       }}
       spaceBetween={30}
       breakpoints={{
-        991: {
+        320: {
+          slidesPerView: 1,
+          slidesPerGroup: 1,
+        },
+        600: {
+          slidesPerView: 2,
+          slidesPerGroup: 2,
+        },
+        768: {
           slidesPerView: 3,
           slidesPerGroup: 3,
         },

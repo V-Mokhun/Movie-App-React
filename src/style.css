@@ -30,3 +30,14 @@
   opacity: 1;
   transform: translate(0, -50%);
 }
+
+.slider__item {
+  max-height: 350px;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  .slider__item {
+    max-height: none;
+  }
+}

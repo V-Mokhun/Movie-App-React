@@ -22,7 +22,7 @@ const OneMovie: React.FC = () => {
   }
 
   return data ? (
-    <Box pb={7}>
+    <Box pb={{ base: 3, lg: 5, xl: 7 }}>
       <OneMovieTop data={data} />
       <OneMovieBottom data={data} />
     </Box>

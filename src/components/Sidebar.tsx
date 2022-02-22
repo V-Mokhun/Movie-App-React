@@ -1,7 +1,7 @@
-import { Button, Flex, Heading, Img, List, ListItem, Stack } from "@chakra-ui/react";
+import { Button, Flex, Heading, Img, List, ListItem, Stack, useMediaQuery } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import React, { useCallback, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DiscoverIcon from "../assets/img/discover.png";
 import HeartIcon from "../assets/img/heart.png";
 import HomeIcon from "../assets/img/home.svg";
@@ -14,11 +14,13 @@ import {
   BEST_MOVIES_ROUTE,
   DISCOVER_ROUTE,
   HOME_ROUTE,
+  LOG_IN_ROUTE,
   MOVIES_ROUTE,
   POPULAR_MOVIES_ROUTE,
   PREMIERE_MOVIES_ROUTE,
   PROFILE_ROUTE,
   RELEASE_MOVIES_ROUTE,
+  SIGN_UP_ROUTE,
 } from "../routes/routes";
 import { handleLogOut } from "../utils";
 import SidebarLink from "./SidebarLink";
@@ -81,6 +83,7 @@ const Sidebar: React.FC = observer(() => {
   const { userStore } = useContext(StoreContext);
   const { firebase } = useContext(FirebaseContext);
   const navigate = useNavigate();
+  const [isLargerThan479] = useMediaQuery(`(min-width: 479px)`);
 
   const onLogOut = useCallback(() => {
     if (firebase) {
@@ -89,7 +92,15 @@ const Sidebar: React.FC = observer(() => {
   }, [firebase]);
 
   return (
-    <Stack pl={4} pb={4} mr={4} height="100%" borderRightWidth={1} borderRightColor="gray.300" borderRightStyle="solid">
+    <Stack
+      pl={4}
+      pb={4}
+      mr={{ base: 0, xl: 4 }}
+      height="100%"
+      borderRightWidth={1}
+      borderRightColor="gray.300"
+      borderRightStyle="solid"
+    >
       <Heading as="h2" fontSize="3xl" textAlign="center" mb={6}>
         Movies
       </Heading>
@@ -140,6 +151,20 @@ const Sidebar: React.FC = observer(() => {
               </Button>
             </ListItem>
           </List>
+        </Flex>
+      )}
+      {!userStore?.isAuth && !isLargerThan479 && (
+        <Flex direction="column" gap={2}>
+          <Link to={LOG_IN_ROUTE}>
+            <Button minW={120} size="md" variant="pink">
+              Log In
+            </Button>
+          </Link>
+          <Link to={SIGN_UP_ROUTE}>
+            <Button minW={120} size="md" variant="red">
+              Sign up
+            </Button>
+          </Link>
         </Flex>
       )}
     </Stack>

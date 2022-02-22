@@ -42,10 +42,7 @@ const MoviesList: React.FC<MoviesListProps> = observer(
         </Flex>
         <Slider prevRef={prevRef} nextRef={nextRef}>
           {movies.map((movie) => (
-            <SwiperSlide
-              style={{ height: "auto", maxHeight: 350, ...slideStyles }}
-              key={movie.kinopoiskId || movie.filmId}
-            >
+            <SwiperSlide className="slider__item" style={{ ...slideStyles }} key={movie.kinopoiskId || movie.filmId}>
               <MovieCard
                 isInWatchList={inWatchList(movie)}
                 onToggleWatchList={() => toggleWatchList(movie)}

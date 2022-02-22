@@ -22,8 +22,8 @@ const OneMovieAbout: React.FC<OneMovieAboutProps> = ({ data }) => {
       <Table variant="simple">
         <Tbody>
           {data.year && (
-            <Tr>
-              <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={160}>
+            <Tr fontSize={{ base: "sm", md: "md" }}>
+              <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={{ base: 120, md: 160 }}>
                 Year
               </Td>
               <Td py={2} px={3} color="#333">
@@ -32,8 +32,8 @@ const OneMovieAbout: React.FC<OneMovieAboutProps> = ({ data }) => {
             </Tr>
           )}
           {data.countries.length > 0 && (
-            <Tr>
-              <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={160}>
+            <Tr fontSize={{ base: "sm", md: "md" }}>
+              <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={{ base: 120, md: 160 }}>
                 Country
               </Td>
               <Td py={2} px={3} color="#333">
@@ -44,8 +44,8 @@ const OneMovieAbout: React.FC<OneMovieAboutProps> = ({ data }) => {
             </Tr>
           )}
           {data.genres.length > 0 && (
-            <Tr>
-              <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={160}>
+            <Tr fontSize={{ base: "sm", md: "md" }}>
+              <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={{ base: 120, md: 160 }}>
                 Genre
               </Td>
               <Td py={2} px={3} color="#333">
@@ -56,8 +56,8 @@ const OneMovieAbout: React.FC<OneMovieAboutProps> = ({ data }) => {
             </Tr>
           )}
           {data.slogan && (
-            <Tr>
-              <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={160}>
+            <Tr fontSize={{ base: "sm", md: "md" }}>
+              <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={{ base: 120, md: 160 }}>
                 Slogan
               </Td>
               <Td py={2} px={3} color="#333">
@@ -67,8 +67,8 @@ const OneMovieAbout: React.FC<OneMovieAboutProps> = ({ data }) => {
           )}
           {budget &&
             budget.items.map((budg) => (
-              <Tr key={`${budg.name}-${budg.type}`}>
-                <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={160}>
+              <Tr key={`${budg.name}-${budg.type}`} fontSize={{ base: "sm", md: "md" }}>
+                <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={{ base: 120, md: 160 }}>
                   {`${budg.type.slice(0, 1)}${budg.type.toLowerCase().slice(1)}`}
                 </Td>
                 <Td py={2} px={3} color="#333">
@@ -80,8 +80,8 @@ const OneMovieAbout: React.FC<OneMovieAboutProps> = ({ data }) => {
               </Tr>
             ))}
           {data.ratingAgeLimits && (
-            <Tr>
-              <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={160}>
+            <Tr fontSize={{ base: "sm", md: "md" }}>
+              <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={{ base: 120, md: 160 }}>
                 Age
               </Td>
               <Td py={2} px={3} color="#333">
@@ -96,8 +96,8 @@ const OneMovieAbout: React.FC<OneMovieAboutProps> = ({ data }) => {
             </Tr>
           )}
           {data.filmLength && (
-            <Tr>
-              <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={160}>
+            <Tr fontSize={{ base: "sm", md: "md" }}>
+              <Td py={2} pr={3} pl={0} color="blackAlpha.600" width={{ base: 120, md: 160 }}>
                 Time
               </Td>
               <Td py={2} px={3} color="#333">

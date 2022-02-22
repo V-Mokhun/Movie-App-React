@@ -22,7 +22,13 @@ const MoviesPageList: React.FC<MoviesPageListProps> = observer(({ movies, inWatc
             isInWatchList={inWatchList(movie)}
             onToggleWatchList={() => toggleWatchList(movie)}
             style={{
-              flex: "0 1 calc(25% - 10px)",
+              flex: {
+                base: "1 1 100%",
+                md: "0 1 calc(50% - 10px)",
+                lg: "0 1 calc(50% - 10px)",
+                xl: "0 1 calc(33.333% - 10px)",
+                "2xl": "0 1 calc(25% - 10px)",
+              },
               height: "auto",
             }}
           />

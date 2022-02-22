@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { AddIcon, DeleteIcon } from "@chakra-ui/icons";
-import { Box, IconButton, Image, Text } from "@chakra-ui/react";
+import { Box, CSSObject, IconButton, Image, Text } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import React, { CSSProperties, useContext } from "react";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ interface MovieCardProps {
   movie: Partial<Movie>;
   onToggleWatchList: () => void;
   isInWatchList: boolean;
-  style?: CSSProperties;
+  style?: CSSObject | undefined;
   imageBoxStyle?: CSSProperties;
   noText?: boolean;
 }
@@ -69,7 +69,7 @@ const MovieCard: React.FC<MovieCardProps> = observer(
             <Image
               src={movie.posterUrlPreview}
               alt={movie.nameEn || movie.nameRu}
-              maxHeight={400}
+              maxHeight={{ base: "500px", md: "400px" }}
               height="100%"
               width="100%"
             />

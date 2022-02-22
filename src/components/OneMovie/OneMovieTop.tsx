@@ -14,7 +14,13 @@ const OneMovieTop: React.FC<OneMovieTopProps> = observer(({ data }) => {
   const { inWatchList, toggleWatchList, userStore } = useMoviePage();
 
   return (
-    <Flex gap={6} pb={4} mb={4} borderBottom="1px solid #dedede66">
+    <Flex
+      gap={{ base: 2, md: 4, lg: 6 }}
+      pb={{ base: 2, lg: 4 }}
+      mb={{ base: 2, lg: 4 }}
+      borderBottom="1px solid #dedede66"
+      direction={{ base: "column", lg: "row" }}
+    >
       <OneMovieImage src={data.posterUrlPreview} title={data.nameEn || data.nameRu} />
       <OneMovieContent
         userStore={userStore}

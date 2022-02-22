@@ -11,7 +11,7 @@ const OneMovieBottom: React.FC<OneMovieBottomProps> = ({ data }) => {
   return (
     <Box>
       {data.description && (
-        <Text fontSize="lg" mb={5}>
+        <Text fontSize={{ base: "md", lg: "lg" }} mb={{ base: 3, md: 4, lg: 5 }}>
           {data.description}
         </Text>
       )}

@@ -5,9 +5,7 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import useAuthListener from "./hooks/useAuthListener";
 import { ONLY_PUBLIC_ROUTES, PRIVATE_ROUTES, PUBLIC_ROUTES } from "./routes";
 
-interface AppRouterProps {}
-
-const AppRouter: React.FC<AppRouterProps> = observer(() => {
+const AppRouter: React.FC = observer(() => {
   const userStore = useAuthListener();
 
   return (

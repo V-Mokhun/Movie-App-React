@@ -10,15 +10,6 @@ import {
   RELEASE_MOVIES_ROUTE,
 } from "../routes/routes";
 
-interface DiscoverProps {}
-
-// all films
-// releases
-// premieres
-// top 250 best films
-// top 100 popular films
-// top awaited films
-
 const DISCOVER_ITEMS = [
   {
     route: MOVIES_ROUTE,
@@ -46,7 +37,7 @@ const DISCOVER_ITEMS = [
   },
 ];
 
-const Discover: React.FC<DiscoverProps> = () => {
+const Discover: React.FC = () => {
   return (
     <Box>
       <Heading as="h1" fontSize="5xl" mb={5}>

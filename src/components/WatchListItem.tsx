@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { DeleteIcon } from "@chakra-ui/icons";
-import { Box, Flex, IconButton, Image, Link, Text } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Image, Link, Text, useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { MOVIES_ROUTE } from "../routes/routes";
@@ -13,10 +13,15 @@ interface WatchListItemProps {
 }
 
 const WatchListItem: React.FC<WatchListItemProps> = ({ movie, onMovieRemove }) => {
+  const [isLargerThan479] = useMediaQuery(`(min-width: 479px)`);
+
   return (
-    <Flex gap={3} key={movie.kinopoiskId || movie.filmId}>
-      <ReactRouterLink to={`${MOVIES_ROUTE}/${movie.kinopoiskId || movie.filmId}`} style={{ flex: "0 0 150px" }}>
-        <Image src={movie.posterUrlPreview} alt={movie.nameEn || movie.nameRu} maxH={200} w="100%" />
+    <Flex gap={3} key={movie.kinopoiskId || movie.filmId} direction={isLargerThan479 ? "row" : "column"}>
+      <ReactRouterLink
+        to={`${MOVIES_ROUTE}/${movie.kinopoiskId || movie.filmId}`}
+        style={{ flex: `${isLargerThan479 ? "0 0 150px" : "0 1 auto"}` }}
+      >
+        <Image src={movie.posterUrlPreview} alt={movie.nameEn || movie.nameRu} maxH={{ base: 300, md: 200 }} w="100%" />
       </ReactRouterLink>
       <Box flex="1 1 auto">
         <Flex gap={2} alignItems="center" justifyContent="space-between">
@@ -35,11 +40,17 @@ const WatchListItem: React.FC<WatchListItemProps> = ({ movie, onMovieRemove }) =
           {movie.filmLength
             ? typeof movie.filmLength === "number"
               ? convertMinsToHrsMins(movie.filmLength)
-              : `${movie.filmLength} min`
+              : `${movie.filmLength}`
             : null}
           {movie.duration && convertMinsToHrsMins(movie.duration)}
         </Text>
-        <Flex alignItems="center" justifyContent="space-between" gap={2}>
+        <Flex
+          alignItems={isLargerThan479 ? "center" : "flex-start"}
+          justifyContent="space-between"
+          gap={2}
+          flexWrap="wrap"
+          direction={isLargerThan479 ? "row" : "column"}
+        >
           <Box>
             {movie.countries && movie.countries.length > 0 && (
               <Flex mb={0.5} alignItems="center" gap={1} color="gray.500">

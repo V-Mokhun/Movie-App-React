@@ -18,15 +18,21 @@ interface OneMovieContentProps {
 const OneMovieContent: React.FC<OneMovieContentProps> = ({ data, isInWatchList, onToggleWatchList, userStore }) => {
   return (
     <Box flex="1 1 auto" minW={0}>
-      <Heading mb={2} as="h1" fontSize="5xl" fontWeight={700} color="gray.500">
+      <Heading mb={2} as="h1" fontSize={{ base: "2xl", md: "3xl", lg: "5xl" }} fontWeight={700} color="gray.500">
         {data.nameEn || data.nameRu} ({data.year})
       </Heading>
       {data.shortDescription && (
-        <Text fontSize="xl" mb={2}>
+        <Text fontSize={{ base: "lg", lg: "xl" }} mb={2}>
           {data.shortDescription}
         </Text>
       )}
-      <Flex alignItems="center" justifyContent="space-between" gap={2} fontSize="3xl" mb={5}>
+      <Flex
+        alignItems="center"
+        justifyContent="space-between"
+        gap={2}
+        fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
+        mb={{ base: 3, md: 4, lg: 5 }}
+      >
         <Flex alignItems="center" gap={2}>
           {data.ratingKinopoisk && (
             <Text
