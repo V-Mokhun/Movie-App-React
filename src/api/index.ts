@@ -12,7 +12,7 @@ export const TOP_MOVIES_API_URL = `v2.2/films/top?`;
 const config: AxiosRequestConfig = {
   baseURL: API_URL,
   headers: {
-    "X-API-KEY": "f87a82d7-9b28-425f-9faa-3ca422df7518",
+    "X-API-KEY": process.env.REACT_APP_API_KEY,
     "Content-Type": "application/json",
   },
 };

@@ -16,9 +16,7 @@ import { FirebaseContext } from "../context/firebaseContext";
 import { HOME_ROUTE, LOG_IN_ROUTE } from "../routes/routes";
 import { handleSignUp, validateEmail } from "../utils";
 
-interface SignUpProps {}
-
-const SignUp: React.FC<SignUpProps> = () => {
+const SignUp: React.FC = () => {
   const { firebase } = useContext(FirebaseContext);
   const navigate = useNavigate();
   const [name, setName] = useState("");

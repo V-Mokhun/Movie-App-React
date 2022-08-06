@@ -6,9 +6,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Heading,
-  Input,
-  Text,
-  Link,
+  Input, Link, Text
 } from "@chakra-ui/react";
 import React, { FormEvent, useContext, useMemo, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
@@ -16,9 +14,7 @@ import { FirebaseContext } from "../context/firebaseContext";
 import { HOME_ROUTE, SIGN_UP_ROUTE } from "../routes/routes";
 import { handleLogIn, validateEmail } from "../utils";
 
-interface LogInProps {}
-
-const LogIn: React.FC<LogInProps> = () => {
+const LogIn: React.FC = () => {
   const { firebase } = useContext(FirebaseContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
